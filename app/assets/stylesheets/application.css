@@ -39,7 +39,11 @@ body {
 
 } 
 
-
+/*三个logo大小调整*/
+.nav > li > a > img {
+   width: 50%;
+   height: 50%;
+}
 
 
 .mb20 { margin-bottom: 20px; } 

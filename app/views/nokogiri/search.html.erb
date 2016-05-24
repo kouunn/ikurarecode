@@ -2,7 +2,7 @@
    
     	<div class="alert alert-dismissible alert-success">
     	  <button type="button" class="close" data-dismiss="alert">&times;</button>
-    	  今日汇率：<strong class="text-danger"></strong> 100日元= <strong class="text-danger"><%= @rate['showapi_res_body']['money'] %></strong>元
+    	  今日汇率：<strong class="text-danger"></strong> 100日元= <strong class="text-danger"><%= session[:rate]['showapi_res_body']['money'] %></strong>元
     	</div>
 		<div class="search-area">
 		

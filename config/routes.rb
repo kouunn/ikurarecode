@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :keywords
   get 'nokogiri/search'
 
   get 'nokogiri/search_result'
