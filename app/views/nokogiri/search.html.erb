@@ -1,0 +1,36 @@
+<div class="col-lg-6 col-lg-offset-3">
+   
+    	<div class="alert alert-dismissible alert-success">
+    	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+    	  今日汇率：<strong class="text-danger"></strong> 100日元= <strong class="text-danger"><%= @rate['showapi_res_body']['money'] %></strong>元
+    	</div>
+		<div class="search-area">
+		
+		     <div id="lable">
+			 	<span class="label label-info">BETA 1.0版</span>
+			 </div>
+
+			      <div id="logo"><span class="color-1">iku</span>ra<span class="color-2"></span></div>
+			      <h1>日本本土电商价格查询<span>让您更好的海淘！</span></h1>
+			
+		</div>
+
+
+        <%= form_tag({action: "search_result"}, method: "get") do %>
+        
+	        <div class="input-group">
+	        	<span class="input-group-addon"><i class="fa x fa-search"></i></span>
+				<%= text_field_tag(:search,nil, placeholder:"请输入产品精确型号或产品日文/英文名称！",class:"form-control") %>
+				<span class="input-group-btn">
+				 <%= submit_tag("搜一搜", class: "btn btn-primary") %>
+				</span>
+				<iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe>
+	    	</div>
+    	<% end %>   
+
+  		
+ </div>
+
+
+
+

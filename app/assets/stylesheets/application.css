@@ -1,0 +1,144 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *
+ *= require_self
+ *= require paper/loader
+ *= require paper/bootswatch
+ *= require application/font-awesome
+ *= require nprogress
+ *= require nprogress-bootstrap
+
+*/
+
+
+
+body {
+
+    padding-top: 70px;
+    
+}
+
+/*消息框*/
+
+.alert {
+
+    margin:1em auto;
+    width: 50%;
+  text-align: center;
+
+
+} 
+
+
+
+
+.mb20 { margin-bottom: 20px; } 
+
+hgroup { padding-left: 15px; border-bottom: 1px solid #ccc; }
+hgroup h1 { font: 500 normal 1.625em "Roboto",Arial,Verdana,sans-serif; color: #2a3644; margin-top: 0; line-height: 1.15; }
+hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; color: #2a3644; margin: 0; padding-bottom: 10px; }
+
+.search-result .thumbnail { border-radius: 0 !important; }
+.search-result:first-child { margin-top: 0 !important; }
+.search-result { margin-top: 20px; }
+.search-result .col-md-2 { border-right: 1px dotted #ccc; min-height: 140px; }
+.search-result ul { padding-left: 0 !important; list-style: none;  }
+.search-result ul li { font: 400 normal .85em "Roboto",Arial,Verdana,sans-serif;  line-height: 30px; }
+.search-result ul li i { padding-right: 5px; }
+.search-result .col-md-7 { position: relative; }
+.search-result h3 { font: 500 normal 1.375em "Roboto",Arial,Verdana,sans-serif; margin-top: 0 !important; margin-bottom: 10px !important; }
+.search-result h3 > a, .search-result i { color: #248dc1 !important; }
+.search-result p { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; } 
+.search-result span.plus { position: absolute; right: 0; top: 126px; }
+.search-result span.plus a { background-color: #248dc1; padding: 5px 5px 3px 5px; }
+.search-result span.plus a:hover { background-color: #414141; }
+.search-result span.plus a i { color: #fff !important; }
+.search-result span.border { display: block; width: 97%; margin: 0 15px; border-bottom: 1px dotted #ccc; }
+
+
+
+
+
+/*----------------------------- 搜索框---------------------------------- *= require application/font-awesome
+*/
+
+.search-area{
+  padding: 5em 1em 1em 1em;
+  letter-spacing: -1px;
+  text-align: center;
+
+}
+
+.search-area div.content {
+
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  background: rgba(255,255,255,0.5);
+  text-align: center;
+
+}
+
+.search-area div#logo {
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 48pt;
+  margin: 0;
+  padding: 0;
+  color: #1bbb9c;
+
+}
+
+.search-area div#logo span {
+
+  color: #f3c500;
+
+}
+
+.logo {
+color: #1bbb9c;
+}
+.logo span{
+color: #f3c500;
+}
+
+.search-area div#lable  {
+  margin-left: 180px;
+  margin-bottom: -30px;
+}
+
+.input-group input#search{
+  text-align: center;
+}
+
+.search-area h1 {
+  color: #447a3da;
+  font-weight: 600;
+  font-size: 2em;
+  line-height: 1;
+  margin-bottom: 0;
+  font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;
+}
+.search-area h1 span {
+  font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;
+  display: block;
+  font-size: 60%;
+  font-weight: 400;
+  padding: 0.8em 0 0.5em 0;
+  color: #447a3da;
+}
+
+/*----------------------------- END OF 搜索框---------------------------------- *= require application/font-awesome
+*/
+
+
+
