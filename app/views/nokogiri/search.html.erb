@@ -1,9 +1,19 @@
 <div class="col-lg-6 col-lg-offset-3">
-   
-    	<div class="alert alert-dismissible alert-success">
-    	  <button type="button" class="close" data-dismiss="alert">&times;</button>
-    	  今日汇率：<strong class="text-danger"></strong> 100日元= <strong class="text-danger"><%= session[:rate]['showapi_res_body']['money'] %></strong>元
-    	</div>
+
+    	<div class="well well-dismissible well-sm">
+    
+    	   	   <span class="text-danger" id="exchanginput"> </span>&nbsp&nbsp&nbsp今日汇率：<strong class="text-danger"></strong><strong class="text-danger" id="exchangerate"><%= session[:rate]['showapi_res_body']['money'].to_f.round(2) %></strong>元
+
+    	<div class="col-lg-3">
+    	     <input type="text" class="form-control col-lg-offset-1" placeholder="日元转人民币"  onkeyup="rmbtojpy(this.value)">
+		</div>
+
+		<div class="col-lg-3">
+			  <input type="text" class="form-control col-lg-offset-1" placeholder="人民币转日元"  onkeyup="jpytormb(this.value)">
+		</div>
+  
+    	 
+    	</div>	
 		<div class="search-area">
 		
 		     <div id="lable">

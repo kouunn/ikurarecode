@@ -20,3 +20,27 @@
 //= require nprogress
 //= require nprogress-turbolinks
 
+//汇率计算
+function rmbtojpy(str)
+{
+if (str.length==0)
+  { 
+  document.getElementById("exchanginput").innerHTML="";
+  return;
+  }
+
+result = document.getElementById("exchangerate").innerHTML*str/100;
+document.getElementById("exchanginput").innerHTML=result.toFixed(2)+"元";
+}
+
+function jpytormb(str)
+{
+if (str.length==0)
+  { 
+  document.getElementById("exchanginput").innerHTML="";
+  return;
+  }
+
+result = str*100/document.getElementById("exchangerate").innerHTML;
+document.getElementById("exchanginput").innerHTML=result.toFixed(2)+"日元";
+}

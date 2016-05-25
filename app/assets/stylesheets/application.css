@@ -58,9 +58,10 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
 .search-result .col-md-2 { border-right: 1px dotted #ccc; min-height: 140px; }
 .search-result ul { padding-left: 0 !important; list-style: none;  }
 .search-result ul li { font: 400 normal .85em "Roboto",Arial,Verdana,sans-serif;  line-height: 30px; }
-.search-result ul li i { padding-right: 5px; }
+.search-result ul li i{ padding-right: 5px;}
 .search-result .col-md-7 { position: relative; }
 .search-result h3 { font: 500 normal 1.375em "Roboto",Arial,Verdana,sans-serif; margin-top: 0 !important; margin-bottom: 10px !important; }
+
 .search-result h3 > a, .search-result i { color: #248dc1 !important; }
 .search-result p { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; } 
 .search-result span.plus { position: absolute; right: 0; top: 126px; }
@@ -69,7 +70,11 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
 .search-result span.plus a i { color: #fff !important; }
 .search-result span.border { display: block; width: 97%; margin: 0 15px; border-bottom: 1px dotted #ccc; }
 
-
+/*--汇率 价格
+*/
+.text-danger {
+  font-size: 1.5em;
+}
 
 
 
@@ -77,7 +82,7 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
 */
 
 .search-area{
-  padding: 5em 1em 1em 1em;
+  padding: 2em 1em 1em 1em;
   letter-spacing: -1px;
   text-align: center;
 
