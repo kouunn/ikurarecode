@@ -10,7 +10,7 @@
     	<ul class="nav nav-pills nav-justified">
     	  <li class="active"><a href="#kakaku" data-toggle="tab" aria-expanded="true">日本価格网<span class="badge"><%= @kproducts.count %></span></a></li>
     	  <li class=""><a href="#amazon" data-toggle="tab" aria-expanded="false">日本亚马逊<span class="badge"><%= @aproducts.count %></span></a></li>
-    	  <li class=""><a href="#rakute" data-toggle="tab" aria-expanded="false">日本楽天网</a></li>
+    	  <li class=""><a href="#rakute" data-toggle="tab" aria-expanded="false">日本楽天网<span class="badge"><%= @rproducts.count %></span></a></li>
     	</ul>
     	<div id="myTabContent" class="tab-content">
 
@@ -75,25 +75,25 @@
 				 </div>
 
 		    	 <div class="tab-pane fade" id="rakute">
-		    	  		<% unless @products.nil? %>
-		    	  			<% @products.each do |k|%>
+		    	  		<% unless @rproducts.nil? %>
+		    	  			<% @rproducts.each do |r|%>
 		    	  				<p>
 			    	  			 	<article class="search-result row">
 			    	  					<div class="col-xs-12 col-sm-12 col-md-3">
-			    	  						<a href="#" title="Lorem ipsum" class="thumbnail"><%= image_tag k.second[:img_url] %></a>
+			    	  						<a href="#" title="Lorem ipsum" class="thumbnail"><%= image_tag r.second[:img_url] %></a>
 			    	  					</div>
 			    	  					<div class="col-xs-12 col-sm-12 col-md-2">
 			    	  						<ul class="meta-search">
-			    	  							<li><i class="glyphicon glyphicon-tags"></i> <span><%= k.second[:title] %></span></li>
-			    	  							<li><i class="fa fa-money"></i> <span class="text-danger">￥<%= k.second[:price] %>日元</span></li>
-			    	  							<li><i class="glyphicon glyphicon-calendar"></i> <span><%= k.second[:score] %></span></li>
-			    	  							<li><i class="glyphicon glyphicon-time"></i> <span><%= k.second[:urll] %></span></li>
-			    	  							<li><i class="glyphicon glyphicon-tags"></i> <span><%= k.second[:title] %></span></li>
+			    	  							
+			    	  							<li><i class="fa fa-money"></i> <span class="text-danger">￥<%= r.second[:price] %>日元</span></li>
+			    	  							<li><i class="glyphicon glyphicon-calendar"></i> <span><%= r.second[:store] %></span></li>
+			    	  							
+			    	  							
 			    	  						</ul>
 			    	  					</div>
 			    	  					<div class="col-xs-12 col-sm-12 col-md-7">
-			    	  						<h3><a href="#" title=""><%= k.second[:title] %></a></h3>
-			    	  						<p><%= k.second[:introduction] %></p>						
+			    	  						<h3><a href="#" title=""><%= link_to r.second[:title],r.second[:url] %></a></h3>
+			    	  						<p><%= r.second[:introduction] %></p>						
 			    	  		                <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
 			    	  					</div>
 			    	  					<span class="clearfix borda"></span>

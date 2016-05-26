@@ -30,13 +30,14 @@ class NokogiriController < ApplicationController
 
 		@kproducts = Hash.new
 		@aproducts = Hash.new
+		@rproducts = Hash.new
 		
 		kakaku_url = "http://kakaku.com/search_results/#{CGI.escape @key_word.encode(Encoding::SJIS)}"
 		doc = Nokogiri::HTML(open(kakaku_url))
 		doc.css(".item").each_with_index do |item,index|
 			@kproducts[index] = {
 								:title => (item.at_css(".itemnameN").text if item.at_css(".itemnameN")),					
-								:price => ((item.at_css(".yen").text.gsub(/\D/, '').to_f*@rate.to_f/100).to_i if item.at_css(".yen")),
+								:price => ((item.at_css(".yen").text.gsub(/\D/, '').to_i*@rate.to_f/100).to_i if item.at_css(".yen")),
 								:category => (item.at_css(".cate").text if item.at_css(".cate")),
 								:score => (item.at_css(".first+ li .numOr").text if item.at_css(".first+ li .numOr")),
 								:introduction => (item.at_css(".itemSpec").text if item.at_css(".itemSpec")),
@@ -61,7 +62,20 @@ class NokogiriController < ApplicationController
 
 		end
 		
+		raketen_url = "http://search.rakuten.co.jp/search/mall/#{@key_word}"
+		doc = Nokogiri::HTML(open(raketen_url))
+		doc.css(".rsrSResultSect").each_with_index do |item,index|
+			@rproducts[index] = {
+								:title => (item.at_css("h2").text if item.at_css("h2")),					
+								:price => ((item.at_css("p a").text.gsub(/\D/, '').to_f.*@rate.to_f/100).to_i if item.at_css("p a")),
+								:store => (item.at_css("style+ .clfx h2 , .txtIconShopName a").text if item.at_css("style+ .clfx h2 , .txtIconShopName a")),	
+								:introduction => (item.at_css(".copyTxt").text if item.at_css(".copyTxt").text if item.at_css(".copyTxt").text if item.at_css(".copyTxt")),
+								:url => (item.at_css("h2 a")[:href] if item.at_css("h2 a")),
+								:img_url => (item.at_css("a img")[:src].chomp!("?_ex=112x112") if item.at_css("a img"))
+							   }
+			
 
+		end
 
 	
   	end
