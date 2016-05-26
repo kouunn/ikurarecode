@@ -1,5 +1,7 @@
 require 'open-uri'
 require 'net/http'
+require 'kconv'
+require 'webrick/httputils'
 
 class NokogiriController < ApplicationController
 	
@@ -32,7 +34,11 @@ class NokogiriController < ApplicationController
 		@aproducts = Hash.new
 		@rproducts = Hash.new
 		
+
+
 		kakaku_url = "http://kakaku.com/search_results/#{CGI.escape @key_word.encode(Encoding::SJIS)}"
+   
+
 		doc = Nokogiri::HTML(open(kakaku_url))
 		doc.css(".item").each_with_index do |item,index|
 			@kproducts[index] = {
@@ -44,11 +50,14 @@ class NokogiriController < ApplicationController
 								:url => (item.at_css(".noscriptLink")[:href] if item.at_css(".noscriptLink")),
 								:img_url => (item.at_css(".noscriptLink img")[:src] if item.at_css(".noscriptLink img")),
 							   }
-			@kproducts.delete(index) if @kproducts[index][:score].nil? 
+			#删除0分产品
+			#@kproducts.delete(index) if @kproducts[index][:score].nil? 
+			
+			@kproducts[index][:score] = 0 if @kproducts[index][:score].nil? 
 		end
 		
 
-		amazon_url = "http://www.amazon.co.jp/s/field-keywords=#{CGI.escape @key_word.encode(Encoding::SJIS)}"
+		amazon_url = "http://www.amazon.co.jp/s/field-keywords=#{CGI.escape @key_word}"
 		doc = Nokogiri::HTML(open(amazon_url))
 		doc.css(".s-item-container").each_with_index do |item,index|
 			@aproducts[index] = {
@@ -62,7 +71,7 @@ class NokogiriController < ApplicationController
 
 		end
 		
-		raketen_url = "http://search.rakuten.co.jp/search/mall/#{CGI.escape @key_word.encode(Encoding::SJIS)}"
+		raketen_url = "http://search.rakuten.co.jp/search/mall/#{CGI.escape @key_word}"
 		doc = Nokogiri::HTML(open(raketen_url))
 		doc.css(".rsrSResultSect").each_with_index do |item,index|
 			@rproducts[index] = {
