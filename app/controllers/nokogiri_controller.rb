@@ -31,7 +31,7 @@ class NokogiriController < ApplicationController
 		@kproducts = Hash.new
 		@aproducts = Hash.new
 		
-		kakaku_url = "http://kakaku.com/search_results/#{@key_word}/"
+		kakaku_url = "http://kakaku.com/search_results/#{CGI.escape @key_word.encode(Encoding::SJIS)}"
 		doc = Nokogiri::HTML(open(kakaku_url))
 		doc.css(".item").each_with_index do |item,index|
 			@kproducts[index] = {
@@ -47,7 +47,7 @@ class NokogiriController < ApplicationController
 		end
 		
 
-		amazon_url = "http://www.amazon.co.jp/s/field-keywords=#{@key_word}"
+		amazon_url = "http://www.amazon.co.jp/s/field-keywords=#{CGI.escape @key_word.encode(Encoding::SJIS)}"
 		doc = Nokogiri::HTML(open(amazon_url))
 		doc.css(".s-item-container").each_with_index do |item,index|
 			@aproducts[index] = {
