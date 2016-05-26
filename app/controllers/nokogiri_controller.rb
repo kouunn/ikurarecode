@@ -4,6 +4,14 @@ require 'net/http'
 class NokogiriController < ApplicationController
 	
   	def search
+  		#unless session[:rate].nil?
+  			#汇率 API - json  汇率=rate['showapi_res_body']['money']
+  			response=Net::HTTP.get_response(URI('http://route.showapi.com/105-31?showapi_appid=18266&showapi_sign=0142ab2f164a43999ddd4fff43ebd063&fromCode=JPY&toCode=CNY&money=100&'))
+  		     #@rate = JSON.parse(response.body)
+  			#session[:rate] = JSON.parse(response.body)
+  			@rate = JSON.parse(response.body)['showapi_res_body']['money']
+  		#end
+  		#@rate = session[:rate]['showapi_res_body']['money']
   	end
 
   	def search_result
@@ -11,13 +19,14 @@ class NokogiriController < ApplicationController
 	  	
 		@key_word = params[:search]
 
-		unless session[:rate].nil?
+		#unless session[:rate].nil?
 			#汇率 API - json  汇率=rate['showapi_res_body']['money']
 			response=Net::HTTP.get_response(URI('http://route.showapi.com/105-31?showapi_appid=18266&showapi_sign=0142ab2f164a43999ddd4fff43ebd063&fromCode=JPY&toCode=CNY&money=100&'))
 		     #@rate = JSON.parse(response.body)
-			session[:rate] = JSON.parse(response.body)
-		end
-		@rate = session[:rate]['showapi_res_body']['money']
+			#session[:rate] = JSON.parse(response.body)
+			@rate = JSON.parse(response.body)['showapi_res_body']['money']
+		#end
+		#@rate = session[:rate]['showapi_res_body']['money']
 
 		@kproducts = Hash.new
 		@aproducts = Hash.new
