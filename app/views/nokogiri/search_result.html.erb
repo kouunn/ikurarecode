@@ -23,7 +23,7 @@
 		    	  					<div class="col-xs-12 col-sm-12 col-md-3">
 		    	  						<a href="#" title="Lorem ipsum" class="thumbnail"><%= image_tag k.second[:img_url] %></a>
 		    	  					</div>
-		    	  					<div class="col-xs-12 col-sm-12 col-md-3">
+		    	  					<div class="col-xs-12 col-sm-12 col-md-3" id="border">
 		    	  						<ul class="meta-search">
 		    	  							<li><i class="fa fa-diamond"></i><span class="text-danger"><%= k.second[:price] %>元</span></li>
 		    	  							<li><i class="fa fa-pie-chart"></i><span><%= k.second[:category] %></span></li>
@@ -55,14 +55,14 @@
 		    	  					<div class="col-xs-12 col-sm-12 col-md-3">
 		    	  						<a href="#" title="Lorem ipsum" class="thumbnail"><%= image_tag a.second[:img_url] %></a>
 		    	  					</div>
-		    	  					<div class="col-xs-12 col-sm-12 col-md-2">
+		    	  					<div class="col-xs-12 col-sm-12 col-md-3" id="border">
 		    	  						<ul class="meta-search">
 		    	  							<li><i class="glyphicon glyphicon-tags"></i><span class="text-danger"><%= a.second[:price] %>元</span></li>
 		    	  							<li><i class="glyphicon glyphicon-time"></i> <span><%= a.second[:category] %></span></li>
 		    	  							
 		    	  						</ul>
 		    	  					</div>
-		    	  					<div class="col-xs-12 col-sm-12 col-md-7">
+		    	  					<div class="col-xs-12 col-sm-12 col-md-6">
 		    	  						<h3><a href="#" title=""><%= link_to a.second[:title],a.second[:url],target:"_blank" %></h3>
 		    	  						<p><%= a.second[:introduction] %></p>						
 		    	  		                <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
@@ -82,7 +82,7 @@
 			    	  					<div class="col-xs-12 col-sm-12 col-md-3">
 			    	  						<a href="#" title="Lorem ipsum" class="thumbnail"><%= image_tag r.second[:img_url] %></a>
 			    	  					</div>
-			    	  					<div class="col-xs-12 col-sm-12 col-md-2">
+			    	  					<div class="col-xs-12 col-sm-12 col-md-3" id="border">
 			    	  						<ul class="meta-search">
 			    	  							
 			    	  							<li><i class="fa fa-money"></i> <span class="text-danger">￥<%= r.second[:price] %>日元</span></li>
@@ -91,8 +91,8 @@
 			    	  							
 			    	  						</ul>
 			    	  					</div>
-			    	  					<div class="col-xs-12 col-sm-12 col-md-7">
-			    	  						<h3><a href="#" title=""><%= link_to r.second[:title],r.second[:url] %></a></h3>
+			    	  					<div class="col-xs-12 col-sm-12 col-md-6">
+			    	  						<h3><a href="#" title=""><%= link_to r.second[:title],r.second[:url],target:"_blank" %></a></h3>
 			    	  						<p><%= r.second[:introduction] %></p>						
 			    	  		                <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
 			    	  					</div>
