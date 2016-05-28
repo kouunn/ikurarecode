@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'ranking/show'
+
+  devise_for :users
   resources :keywords
   get 'nokogiri/search'
 

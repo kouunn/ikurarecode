@@ -15,6 +15,11 @@
     <%= stylesheet_link_tag "application", :media => "all" %>
 
     <%= yield(:page_stylesheet) if content_for?(:page_stylesheet) %>
+    <!-- Javascripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application" %>
+    <%= yield(:page_javascript) if content_for?(:page_javascript) %>
 
   </head>
   <body>
@@ -23,7 +28,7 @@
     <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-
+           
 
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -35,7 +40,6 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-          
             
             <li class="<%= 'active' if current_page?(nokogiri_search_path) %>">
             <%= link_to(nokogiri_search_path) do %>
@@ -43,21 +47,48 @@
             <% end %>
             </li>
 
-            <li class="dropdown <%= 'active' if current_page?(nokogiri_search_result_path) %>">
-            <%= link_to(nokogiri_search_result_path,{class:"dropdown-toggle","data-toggle": "dropdown"}) do %>
-              <i class="fa fa-user fa-6" aria-hidden="true"></i>我的账户<b class="caret"></b>
+            <li class="<%= 'active' if current_page?(ranking_show_path) %>">
+            <%= link_to(ranking_show_path) do %>
+              <i class="fa fa-gift" aria-hidden="true"></i>日货榜单
             <% end %>
-
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
             </li>
+
+            <li class="<%= 'active' if current_page?(keywords_path) %>">
+            <%= link_to(keywords_path) do %>
+              <i class="fa fa-fire" aria-hidden="true"></i>热门搜索
+            <% end %>
+            </li>
+
+            
+            
+            <% if signed_in? %>   
+                <li class="dropdown <%= 'active' if current_page?(nokogiri_search_result_path) %>">
+                <%= link_to(nokogiri_search_result_path,{class:"dropdown-toggle","data-toggle": "dropdown"}) do %>
+                  <i class="fa fa-user fa-6" aria-hidden="true"></i>我的账户<b class="caret"></b>
+                <% end %>
+
+                    <ul class="dropdown-menu">
+                      <li><%= link_to "主页",new_user_registration_path %></li>
+                      <li><%= link_to "收藏",new_user_session_path %></li>
+
+                      <li class="dropdown-header">--------------------</li>
+                      <li><%= link_to "设置",new_user_registration_path %></li>
+                      <li><%= link_to "退出",destroy_user_session_path,html_options = { method: "delete"} %></li>
+                    </ul>
+                </li>
+            <% else %>
+                <li class="<%= 'active' if current_page?(new_user_registration_path) %>">
+                <%= link_to(new_user_registration_path) do %>
+                  <i class="fa fa-user-plus" aria-hidden="true"></i>注册
+                <% end %>
+                </li>
+
+                <li class="<%= 'active' if current_page?(new_user_session_path) %>">
+                <%= link_to(new_user_session_path) do %>
+                  <i class="fa fa-sign-in" aria-hidden="true"></i></i>登录
+                <% end %>
+                </li>
+            <% end %>
 
 
 
@@ -69,15 +100,12 @@
     <div class="container theme-showcase">
 
       <%= bootswatch_flash %>
+      
     	<%= yield %>
 
 
     </div> <!-- /container -->
 
-    <!-- Javascripts
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "application" %>
-    <%= yield(:page_javascript) if content_for?(:page_javascript) %>
+
   </body>
 </html>
