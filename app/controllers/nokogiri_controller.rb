@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'net/http'
-require 'kconv'
-require 'webrick/httputils'
+
+
 
 class NokogiriController < ApplicationController
 	
@@ -9,8 +9,9 @@ class NokogiriController < ApplicationController
   	end
 
   	def search_result
-  	
-	  	
+
+
+
 		@key_word = params[:search]
 
 		@kproducts = Hash.new
@@ -26,7 +27,7 @@ class NokogiriController < ApplicationController
 		doc.css(".item").each_with_index do |item,index|
 			@kproducts[index] = {
 								:title => (item.at_css(".itemnameN").text if item.at_css(".itemnameN")),					
-								:price => ((item.at_css(".yen").text.gsub(/\D/, '').to_i*@rate.to_f/100).to_i if item.at_css(".yen")),
+								:price => ((item.at_css(".yen").text.gsub(/\D/, '').to_i*$rate.to_f/100).to_i if item.at_css(".yen")),
 								:category => (item.at_css(".cate").text if item.at_css(".cate")),
 								:score => (item.at_css(".first+ li .numOr").text if item.at_css(".first+ li .numOr")),
 								:introduction => (item.at_css(".itemSpec").text if item.at_css(".itemSpec")),
@@ -45,7 +46,7 @@ class NokogiriController < ApplicationController
 		doc.css(".s-item-container").each_with_index do |item,index|
 			@aproducts[index] = {
 								:title => (item.at_css("a h2").text if item.at_css("a h2")),					
-								:price => ((item.at_css(".s-price").text.gsub(/\D/, '').to_f.*@rate.to_f/100).to_i if item.at_css(".s-price")),
+								:price => ((item.at_css(".s-price").text.gsub(/\D/, '').to_f.*$rate.to_f/100).to_i if item.at_css(".s-price")),
 								:category => (item.at_css(".a-spacing-mini~ .a-spacing-mini+ .a-spacing-mini .a-text-bold").text if item.at_css(".a-spacing-mini~ .a-spacing-mini+ .a-spacing-mini .a-text-bold")),
 								:url => (item.at_css("a")[:href] if item.at_css("a")),
 								:img_url => (item.at_css("a img")[:src] if item.at_css("a img"))
@@ -59,7 +60,7 @@ class NokogiriController < ApplicationController
 		doc.css(".rsrSResultSect").each_with_index do |item,index|
 			@rproducts[index] = {
 								:title => (item.at_css("h2").text if item.at_css("h2")),					
-								:price => ((item.at_css("p a").text.gsub(/\D/, '').to_f.*@rate.to_f/100).to_i if item.at_css("p a")),
+								:price => ((item.at_css("p a").text.gsub(/\D/, '').to_f.*$rate.to_f/100).to_i if item.at_css("p a")),
 								:store => (item.at_css("style+ .clfx h2 , .txtIconShopName a").text if item.at_css("style+ .clfx h2 , .txtIconShopName a")),	
 								:introduction => (item.at_css(".copyTxt").text if item.at_css(".copyTxt").text if item.at_css(".copyTxt").text if item.at_css(".copyTxt")),
 								:url => (item.at_css("h2 a")[:href] if item.at_css("h2 a")),
@@ -68,7 +69,10 @@ class NokogiriController < ApplicationController
 			
 
 		end
+	
 
 	
   	end
+
+
 end
