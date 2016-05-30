@@ -5,13 +5,16 @@ require 'net/http'
 class NokogiriController < ApplicationController
 	#include 'nokogiri_helper.rb'
   	def search
-
-  	end
+    end
 
   	def search_result
 
 
     		@key_word = params[:search]
+
+        unless Keyword.find_by_name(@key_word)
+           Keyword.create(:name => @key_word,:user_id=> current_user.id)
+        end  
 
     		@kproducts = Hash.new
     		@aproducts = Hash.new
@@ -69,7 +72,6 @@ class NokogiriController < ApplicationController
 
     		end
   	end
-
 
 
 
