@@ -12,12 +12,22 @@ class NokogiriController < ApplicationController
 
     		@key_word = params[:search]
 
-            keyword = Keyword.find_by_name(@key_word)
-            keyword.count =0 if keyword.count.nil?
-            keyword.count+=1
-            keyword.user_id = current_user.id if signed_in?
-            keyword.save
-            
+            key_word = Keyword.find_by_name(@key_word)
+
+            if key_word.nil?
+                  if signed_in?
+                      Keyword.new(:name => @key_word,:user_id => current_user.id).save
+                  else
+                      Keyword.new(:name => @key_word).save
+                  end    
+
+              else
+                  key_word.count =0 if key_word.count.nil?
+                  key_word.count+=1
+                  key_word.user_id = current_user.id if signed_in?
+                  key_word.save
+                  
+              end
 
 
     		@kproducts = Hash.new
@@ -47,7 +57,7 @@ class NokogiriController < ApplicationController
     		end
 
 
-    		amazon_url = URI.escape("http://www.amazon.co.jp/s/field-keywords=#{@key_word}")
+    		amazon_url = URI.escape("http://www.amazon.co.jp/s/field-key_words=#{@key_word}")
     		doc = Nokogiri::HTML(open(amazon_url))
     		doc.css(".s-item-container").each_with_index do |item,index|
     			@aproducts[index] = {
