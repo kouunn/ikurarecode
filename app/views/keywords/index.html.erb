@@ -19,7 +19,7 @@
 
 
 
-<% if current_user.id == 1 %>
+<% if signed_in? and current_user.id == 1 %>
 
 <table>
   <thead>
@@ -48,5 +48,4 @@
 <br>
 
 <%= link_to 'New Keyword', new_keyword_path %>
-<% else %>
 <% end %>
