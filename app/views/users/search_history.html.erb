@@ -1,27 +1,27 @@
 <div class="col-lg-6 col-lg-offset-3">
-    <div class="page-header">
-      <h3 id="tables">搜索历史</h3>
-    </div>
+    <fieldset>
+    <legend>搜索历史</legend>
 
-    <div class="bs-component">
-      <table class="table table-striped table-hover ">
-        <thead>
-          <tr>
-            <th></th>
-            <th>搜索关键字</th>
-            <th>搜索时间</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @historys.each_with_index do |history,index| %>
-          <tr>
-            <td><%= index+1 %></td>
-            <td><%= link_to history.name, controller: "nokogiri", action: "search_result",search: history.name  %></td>
-            <td><%= history.updated_at %></td>
-           
-          </tr>
-          <% end %>
-        </tbody>
-      </table> 
-    </div><!-- /example -->
+        <div class="bs-component">
+          <table class="table table-striped table-hover ">
+            <thead>
+              <tr>
+                <th></th>
+                <th>搜索关键字</th>
+                <th>搜索时间</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @historys.each_with_index do |history,index| %>
+              <tr>
+                <td><%= index+1 %></td>
+                <td><%= link_to history.name, controller: "nokogiri", action: "search_result",search: history.name  %></td>
+                <td><%= history.updated_at %></td>
+               
+              </tr>
+              <% end %>
+            </tbody>
+          </table> 
+        </div><!-- /example -->
+    </fieldset>
 </div>
