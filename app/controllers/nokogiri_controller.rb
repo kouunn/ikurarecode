@@ -12,9 +12,13 @@ class NokogiriController < ApplicationController
 
     		@key_word = params[:search]
 
-        unless Keyword.find_by_name(@key_word)
-           Keyword.create(:name => @key_word,:user_id=> current_user.id)
-        end  
+            keyword = Keyword.find_by_name(@key_word)
+            keyword.count =0 if keyword.count.nil?
+            keyword.count+=1
+            keyword.user_id = current_user.id if signed_in?
+            keyword.save
+            
+
 
     		@kproducts = Hash.new
     		@aproducts = Hash.new

@@ -1,7 +1,23 @@
 Rails.application.routes.draw do
+  get 'users/show'
+
+  get 'users/edit'
+
+  get 'users/update'
+
+  get 'users/show'
+
+  get 'users/edit'
+
+  get 'users/update'
+
+  get 'users/search_history'
+
   get 'ranking/show'
 
   devise_for :users
+  resources :users
+  
   resources :keywords
   get 'nokogiri/search'
 

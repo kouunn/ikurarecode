@@ -1,0 +1,63 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="clearfix">                  
+    <%= f.label :用户名 %>
+    <%= f.text_field :user_name %>
+  </div>
+
+  <div class="clearfix">                    
+    <%= f.label :生日 %>    
+    <%= f.date_select :birthday, {order: [:year, :month, :day], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: true} %>
+
+  </div>
+
+  <div class="clearfix">
+      <%= f.label :性别 %> 
+      <%# f.select :sex, {|i| "#{'-' * i.level} #{i.name}" }, { selected: 
+         1, include_blank: true } %>
+      男<%= f.radio_button :sex, '', {:checked => true} %>
+      女<%= f.radio_button :sex, '0', {:checked => true} %>
+      保密<%= f.radio_button :sex, '1', {:checked => true} %>
+   
+  </div>
+
+  <div class="clearfix">                  
+    <%= f.label :社交账号 %>
+   
+      <%= f.text_field :contact %>
+  </div>
+
+  <div class="clearfix">                
+      <%= f.label :个人签名 %>
+     
+      <%= f.text_area :introduction, placeholder:"随便写点东西。。。" %>
+  
+  </div>
+
+  <div class="clearfix">                
+      <%= f.label :上传头像 %>
+     
+        <%= f.file_field :icon, multiple: true %>
+    
+  </div>
+
+
+  <p class="post-terms">感谢您对<a href="terms.html" target="_blank">ikura</a> 的贡献 <a href="terms.html" target="_blank">英雄</a> 后会 <a href="privacy.html" target="_blank">有期！</a></p>
+  <div class="clearfix"></div>
+
+  <div class="clearfix">
+    <%= f.submit :发布%>
+  </div>
+
+<% end %>
