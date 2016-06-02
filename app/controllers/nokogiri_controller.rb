@@ -57,8 +57,9 @@ class NokogiriController < ApplicationController
     		end
 
 
-    		amazon_url = URI.escape("http://www.amazon.co.jp/s/field-key_words=#{@key_word}")
-    		doc = Nokogiri::HTML(open(amazon_url))
+    		#amazon_url = URI.escape("http://www.amazon.co.jp/s/field-key_words=#{@key_word}")
+        amazon_url = open("http://www.amazon.co.jp/s/field-keywords=#{CGI.escape @key_word}")
+    		doc = Nokogiri::HTML(amazon_url)
     		doc.css(".s-item-container").each_with_index do |item,index|
     			@aproducts[index] = {
     								:title => (item.at_css("a h2").text if item.at_css("a h2")),					
