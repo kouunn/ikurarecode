@@ -30,15 +30,24 @@ class NokogiriController < ApplicationController
               end
 
         #搜索关键字转日文
-        #@key_word = zh2jp(@key_word)
+        
+
+        
+         @key_word = zh2jp(@key_word) unless @key_word.match(/\p{Katakana}|\p{Hiragana}/)
+
+         @k_key_word_a = @key_word.gsub(/\d*[a-zA-Z]\d*/,'')
+         @k_key_word_b = @key_word.gsub(/\p{Katakana}|\p{Hiragana}|[ー－]|\p{Han}/,'')
+
+
+
 
     		@kproducts = Hash.new
     		@aproducts = Hash.new
     		@rproducts = Hash.new
     		
 
-
-    		kakaku_url = URI.escape("http://kakaku.com/search_results/#{@key_word.encode(Encoding::SJIS)}")
+        #kakaku_url = URI.escape("http://kakaku.com/search_results/#{@key_word.encode(Encoding::SJIS)}")
+    		kakaku_url = URI.escape("http://kakaku.com/search_results/#{@k_key_word_a.encode(Encoding::SJIS)}+#{@k_key_word_b.encode(Encoding::SJIS)}")
        
 
     		doc = Nokogiri::HTML(open(kakaku_url))
@@ -60,7 +69,11 @@ class NokogiriController < ApplicationController
 
 
     		#amazon_url = URI.escape("http://www.amazon.co.jp/s/field-key_words=#{@key_word}")
-        amazon_url = open("http://www.amazon.co.jp/s/field-keywords=#{CGI.escape @key_word}")
+        amazon_url = open("http://www.amazon.co.jp/s/field-keywords=#{CGI.escape @key_word}","User-Agent" => "ikura/#{rand(999999)}")
+
+        #amazon_url = open("http://www.amazon.co.jp/gp/aw/s/ref=is_box_?__mk_ja_JP=%83J%83%5E%83J%83i&k=#{CGI.escape @key_word}&url=search-alias%3Daps")
+
+
     		doc = Nokogiri::HTML(amazon_url)
     		doc.css(".s-item-container").each_with_index do |item,index|
     			@aproducts[index] = {
