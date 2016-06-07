@@ -35,8 +35,8 @@ class NokogiriController < ApplicationController
         
          @key_word = zh2jp(@key_word) unless @key_word.match(/\p{Katakana}|\p{Hiragana}/)
 
-         @k_key_word_a = @key_word.gsub(/\d*[a-zA-Z]\d*/,'')
-         @k_key_word_b = @key_word.gsub(/\p{Katakana}|\p{Hiragana}|[ー－]|\p{Han}/,'')
+         @key_word_a = @key_word.gsub(/\d*[a-zA-Z]\d*/,'').gsub(/\の+/,'')
+         @key_word_b = @key_word.gsub(/\p{Katakana}|\p{Hiragana}|[ー－]|\p{Han}/,'')
 
 
 
@@ -47,7 +47,7 @@ class NokogiriController < ApplicationController
     		
 
         #kakaku_url = URI.escape("http://kakaku.com/search_results/#{@key_word.encode(Encoding::SJIS)}")
-    		kakaku_url = URI.escape("http://kakaku.com/search_results/#{@k_key_word_a.encode(Encoding::SJIS)}+#{@k_key_word_b.encode(Encoding::SJIS)}")
+    		kakaku_url = URI.escape("http://kakaku.com/search_results/#{@key_word_a.encode(Encoding::SJIS)}+#{@key_word_b.encode(Encoding::SJIS)}")
        
 
     		doc = Nokogiri::HTML(open(kakaku_url))
