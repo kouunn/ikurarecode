@@ -57,7 +57,7 @@ class NokogiriController < ApplicationController
     								:price => ((item.at_css(".yen").text.gsub(/\D/, '').to_i*$rate.to_f/100).to_i if item.at_css(".yen")),
     								:category => (item.at_css(".cate").text if item.at_css(".cate")),
     								:score => (item.at_css(".first+ li .numOr").text if item.at_css(".first+ li .numOr")),
-    								:introduction => (jp2zh(item.at_css(".itemSpec").text) if item.at_css(".itemSpec")),
+    								:introduction => (item.at_css(".itemSpec").text if item.at_css(".itemSpec")),
     								:url => (item.at_css(".noscriptLink")[:href] if item.at_css(".noscriptLink")),
     								:img_url => (item.at_css(".noscriptLink img")[:src] if item.at_css(".noscriptLink img")),
     							   }
