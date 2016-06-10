@@ -57,19 +57,21 @@ class NokogiriController < ApplicationController
     								:price => ((item.at_css(".yen").text.gsub(/\D/, '').to_i*$rate.to_f/100).to_i if item.at_css(".yen")),
     								:category => (item.at_css(".cate").text if item.at_css(".cate")),
     								:score => (item.at_css(".first+ li .numOr").text if item.at_css(".first+ li .numOr")),
-    								:introduction => (item.at_css(".itemSpec").text if item.at_css(".itemSpec")),
+    								:introduction => (jp2zh(item.at_css(".itemSpec").text) if item.at_css(".itemSpec")),
     								:url => (item.at_css(".noscriptLink")[:href] if item.at_css(".noscriptLink")),
     								:img_url => (item.at_css(".noscriptLink img")[:src] if item.at_css(".noscriptLink img")),
     							   }
     			#删除0分产品
-    			#@kproducts.delete(index) if @kproducts[index][:score].nil? 
+          @kproducts[index][:score] = 0 if @kproducts[index][:score].nil?
+    			@kproducts.delete(index) if @kproducts[index][:img_url]=='http://img.kakaku.com/images/category/noImage_120x120.gif'
+
+          #@kproducts.delete(index) if @kproducts[index][:score]==0
     			
-    			@kproducts[index][:score] = 0 if @kproducts[index][:score].nil? 
     		end
 
 
-    		#amazon_url = URI.escape("http://www.amazon.co.jp/s/field-key_words=#{@key_word}")
-        amazon_url = open("http://www.amazon.co.jp/s/field-keywords=#{CGI.escape @key_word}","User-Agent" => "ikura/#{rand(999999)}")
+    		#amazon_url = URI.escape("http://www.amazon.co.jp/s/field-key_words=#{CGI.escape @key_word}")
+        amazon_url = open("https://www.amazon.co.jp/s/field-keywords=#{CGI.escape @key_word}","User-Agent" => "ikura/#{rand(999999)}")
 
         #amazon_url = open("http://www.amazon.co.jp/gp/aw/s/ref=is_box_?__mk_ja_JP=%83J%83%5E%83J%83i&k=#{CGI.escape @key_word}&url=search-alias%3Daps")
 
@@ -105,14 +107,14 @@ class NokogiriController < ApplicationController
 
     def zh2jp(text)
       md5 = Digest::MD5.hexdigest("20160527000022236#{text}ikura2016CPtF543nsRwPIleARxOf")
-      url="http://api.fanyi.baidu.com/api/trans/vip/translate?q=#{text}&from=zh&to=jp&appid=20160527000022236&salt=ikura2016&sign=#{md5}"
+      url="http://api.fanyi.baidu.com/api/trans/vip/translate?q=#{text}&from=zh&to=en&appid=20160527000022236&salt=ikura2016&sign=#{md5}"
       response=Net::HTTP.get_response(URI(URI.escape(url)))
       JSON.parse(response.body)['trans_result'][0]['dst']
     end
 
     def jp2zh(text)
       md5 = Digest::MD5.hexdigest("20160527000022236#{text}ikura2016CPtF543nsRwPIleARxOf")
-      url="http://api.fanyi.baidu.com/api/trans/vip/translate?q=#{text}&from=jp&zh=jp&appid=20160527000022236&salt=ikura2016&sign=#{md5}"
+      url="http://api.fanyi.baidu.com/api/trans/vip/translate?q=#{text}&from=jp&to=zh&appid=20160527000022236&salt=ikura2016&sign=#{md5}"
       response=Net::HTTP.get_response(URI(URI.escape(url)))
       JSON.parse(response.body)['trans_result'][0]['dst']
     end
