@@ -49,9 +49,15 @@
               <% end %>
               </li>
 
-              <li class="<%= 'active' if current_page?(ranking_show_path) %>">
-              <%= link_to(ranking_show_path) do %>
-                <i class="fa fa-gift" aria-hidden="true"></i>好物推荐
+              <li class="<%= 'active' if current_page?(brands_path) %>">
+              <%= link_to(brands_path) do %>
+                <i class="fa fa-gift" aria-hidden="true"></i>品牌
+              <% end %>
+              </li>
+
+              <li class="<%= 'active' if current_page?(products_path) %>">
+              <%= link_to(products_path) do %>
+                <i class="fa fa-gift" aria-hidden="true"></i>日货百科
               <% end %>
               </li>
 
@@ -98,15 +104,13 @@
     </div>
   </div>
   <div id="clouds">
+
     <div class="container theme-showcase" >
 
       <%= bootswatch_flash %>
 
     
       <%= yield %>
-
-
-    </div> <!-- /container -->
     <div class="cloud x1"></div>
     <!-- Time for multiple clouds to dance around -->
     <div class="cloud x2"></div>
@@ -114,8 +118,11 @@
     <div class="cloud x4"></div>
     <div class="cloud x5"></div>
 
-
+    </div> <!-- /container -->
+    
   </div>
+
+
 
 
 

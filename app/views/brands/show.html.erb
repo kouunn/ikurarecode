@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name cn:</strong>
+  <%= @brand.name_cn %>
+</p>
+
+<p>
+  <strong>Name jp:</strong>
+  <%= @brand.name_jp %>
+</p>
+
+<p>
+  <strong>Name jp:</strong>
+  <%= @brand.portfolio %>
+</p>
+
+<p>
+  <strong>Introduction:</strong>
+  <%= @brand.introduction %>
+</p>
+
+<p>
+  <strong>Image url:</strong>
+  <%= @brand.image_url %>
+</p>
+
+<p>
+  <strong>Creation time:</strong>
+  <%= @brand.creation_time %>
+</p>
+
+<p>
+  <strong>Site address:</strong>
+  <%= @brand.site_address %>
+</p>
+
+<%= link_to 'Edit', edit_brand_path(@brand) %> |
+<%= link_to 'Back', brands_path %>

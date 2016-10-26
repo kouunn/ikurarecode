@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :products
+  resources :categories
+  resources :brands
   get 'users/show'
 
   get 'users/edit'
