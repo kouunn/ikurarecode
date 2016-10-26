@@ -189,7 +189,7 @@ DEPENDENCIES
   jquery-rails
   nokogiri
   nprogress-rails
-  pg (~> 0.15)
+  pg
   rails (= 4.2.6)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
@@ -203,4 +203,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.2
+   1.13.6
