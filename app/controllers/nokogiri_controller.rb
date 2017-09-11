@@ -89,7 +89,7 @@ class NokogiriController < ApplicationController
 
     		end
     		
-    		raketen_url = URI.escape("http://search.rakuten.co.jp/search/mall/#{@key_word}")
+    		raketen_url = URI.escape("https://search.rakuten.co.jp/search/mall/#{@key_word}")
     		doc = Nokogiri::HTML(open(raketen_url))
     		doc.css(".rsrSResultSect").each_with_index do |item,index|
     			@rproducts[index] = {
