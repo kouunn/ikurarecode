@@ -91,16 +91,19 @@ class NokogiriController < ApplicationController
     		
     		raketen_url = URI.escape("https://search.rakuten.co.jp/search/mall/#{@key_word}")
     		doc = Nokogiri::HTML(open(raketen_url))
-    		doc.css(".rsrSResultSect").each_with_index do |item,index|
+    		doc.css(".dui-card").each_with_index do |item,index|
     			@rproducts[index] = {
-    								:title => (item.at_css("h2").text if item.at_css("h2")),					
-    								:price => ((item.at_css("p a").text.gsub(/\D/, '').to_f.*$rate.to_f/100).to_i if item.at_css("p a")),
+    								:title => (item.at_css("h2").text if item.at_css("h2")),
+                    :price => ((item.at_css("span").text.gsub(/\D/, '').to_f.*$rate.to_f/100).to_i if item.at_css("span")),
     								:store => (item.at_css("style+ .clfx h2 , .txtIconShopName a").text if item.at_css("style+ .clfx h2 , .txtIconShopName a")),	
     								:introduction => (item.at_css(".copyTxt").text if item.at_css(".copyTxt").text if item.at_css(".copyTxt").text if item.at_css(".copyTxt")),
     								:url => (item.at_css("h2 a")[:href] if item.at_css("h2 a")),
-    								:img_url => (item.at_css("a img")[:src].chomp!("?_ex=112x112") if item.at_css("a img"))
+
+                    :img_url => (item.at_css("img")[:src] if item.at_css("img")),
+    								#:img_url => (item.at_css("a img")[:src].chomp!("?_ex=112x112") if item.at_css("a img"))
     							   }
-    			
+            #删除空白项目         
+    			 @rproducts.delete(index) if @rproducts[index][:title].nil?
 
     		end
   	end
