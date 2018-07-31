@@ -1,28 +1,4 @@
 == README
+日本三大电商价格查询网站，半成品，搜索kakaku，日亚，乐天的产品价格。简单重构了优化了一下，换了个界面。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+gaoyun.herokuapp.com ps:第一次载入略慢。
